@@ -1,6 +1,7 @@
 package com.branders.sulfurpotassiummod;
 
 import com.branders.sulfurpotassiummod.blocks.DropExpOre;
+import com.branders.sulfurpotassiummod.config.Config;
 import com.branders.sulfurpotassiummod.lists.BlockList;
 import com.branders.sulfurpotassiummod.world.OreGeneration;
 
@@ -12,9 +13,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.IForgeRegistry;
 
 /**
@@ -31,6 +35,10 @@ public class SulfurPotassiumMod
 	 
 	public SulfurPotassiumMod() 
 	{
+		// Setup config
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.config);
+    	Config.loadConfig(Config.config, FMLPaths.CONFIGDIR.get().resolve("spawnermod-config.toml").toString());
+    	
 	    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 	}
 	
