@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "sulfurpotassiummod:potassium_ore_block"
+          "name": "sulfurpotassiummod:potassium_ore"
         }
       ],
       "conditions": [

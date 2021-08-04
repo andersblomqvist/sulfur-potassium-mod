@@ -5,26 +5,27 @@ import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
 import net.minecraft.item.BoneMealItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 /**
- * 	List of all items in mod.	
+ * 	Mod items registry and reference
  * 
  * 	@author Anders <Branders> Blomqvist
  */
 public class ModItems {
-	
+
 	public static Item
-		SULFUR_ITEM,
-		POTASSIUM_ITEM;
+		POTASSIUM,
+		SULFUR;
 	
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		registerItem(event, "sulfur_item", new Item(new Item.Properties().group(ItemGroup.MATERIALS)));
-		registerItem(event, "potassium_item", new BoneMealItem(new Item.Properties().group(ItemGroup.MATERIALS)));
+	public static void registerItems() {
+		registerItem("potassium", POTASSIUM = new BoneMealItem(new Item.Settings().group(ItemGroup.MATERIALS)));
+		registerItem("sulfur", SULFUR = new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
 	}
 	
-	private static void registerItem(RegistryEvent.Register<Item> event, String name, Item item) {
-		item.setRegistryName(SulfurPotassiumMod.MODID, name);
-		event.getRegistry().register(item);
+	public static void registerItem(String name, Item item) {
+		Registry.register(Registry.ITEM, new Identifier(SulfurPotassiumMod.MOD_ID, name), item);
 	}
+
 }
