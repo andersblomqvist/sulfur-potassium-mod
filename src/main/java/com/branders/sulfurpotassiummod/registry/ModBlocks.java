@@ -3,49 +3,45 @@ package com.branders.sulfurpotassiummod.registry;
 import java.util.ArrayList;
 
 import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
-import com.branders.sulfurpotassiummod.blocks.DropExpOre;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.Material;
+import net.minecraft.block.OreBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.util.registry.Registry;
 
 /**
- * 	List of all blocks in mod.	
+ * 	Mod Block registry and references
  * 
  * 	@author Anders <Branders> Blomqvist
  */
 public class ModBlocks {
-	
+
 	private static ArrayList<Block> blockList = new ArrayList<Block>();
 	
-	public static Block 
-		SULFUR_ORE_BLOCK,
-		SULFUR_NETHER_ORE_BLOCK,
-		SULFUR_BLOCK,
-		POTASSIUM_ORE_BLOCK,
-		POTASSIUM_BLOCK;
+	public static final Block 
+		SULFUR_ORE = registerBlock("sulfur_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F), UniformIntProvider.create(2, 4))),
+		SULFUR_NETHER_ORE = registerBlock("sulfur_nether_ore", new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 5))),
+		SULFUR_BLOCK = registerBlock("sulfur_block", new Block(FabricBlockSettings.of(Material.METAL, MapColor.GOLD).breakByTool(FabricToolTags.PICKAXES, 2).strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL))),
+		POTASSIUM_ORE = registerBlock("potassium_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F))),
+		POTASSIUM_BLOCK = registerBlock("potassium_block", new Block(FabricBlockSettings.of(Material.METAL, MapColor.IRON_GRAY).breakByTool(FabricToolTags.PICKAXES, 2).strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL)));
 	
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		registerBlock(event, "potassium_ore_block", POTASSIUM_ORE_BLOCK = new Block(Block.Properties.from(Blocks.IRON_ORE)));
-		registerBlock(event, "potassium_block", POTASSIUM_BLOCK = new Block(Block.Properties.from(Blocks.IRON_BLOCK)));
-		registerBlock(event, "sulfur_ore_block", SULFUR_ORE_BLOCK = new DropExpOre(Block.Properties.from(Blocks.IRON_ORE)));
-		registerBlock(event, "sulfur_nether_ore_block", SULFUR_ORE_BLOCK = new DropExpOre(Block.Properties.from(Blocks.NETHER_QUARTZ_ORE)));
-		registerBlock(event, "sulfur_block", SULFUR_BLOCK = new Block(Block.Properties.from(Blocks.IRON_BLOCK)));
-	}
+	public static void register() {}
 	
-	public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
-		for(Block block : blockList)
-			event.getRegistry().register(new BlockItem(block, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(block.getRegistryName()));
-	}
-	
-	private static void registerBlock(RegistryEvent.Register<Block> event, String name, Block block) {
-		block.setRegistryName(SulfurPotassiumMod.MODID, name);
-		event.getRegistry().register(block);
+	private static Block registerBlock(String name, Block block) {
+		Registry.register(Registry.BLOCK, new Identifier(SulfurPotassiumMod.MOD_ID, name), block);
+		ModItems.registerItem(name, new BlockItem(block, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
 		blockList.add(block);
+		return block;
 	}
 	
 	/**
@@ -58,10 +54,12 @@ public class ModBlocks {
 	 */
 	public static BlockState getBlockState(String name) {
 		for(Block block : blockList) {
-			if(block.getRegistryName().toString().contains(name)) {
+			if(block.getName().toString().contains(name)) {
 				return block.getDefaultState();
 			}
 		}
+		System.out.println("Could not find block with name: " + name + ", returning NULL value");
 		return null;
 	}
+	
 }

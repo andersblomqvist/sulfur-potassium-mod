@@ -2,10 +2,10 @@
   "type": "crafting_shapeless",
   "ingredients": [
     {
-    	"tag": "sulfurpotassiummod:dusts/sulfur_item"
+    	"tag": "sulfurpotassiummod:dusts/sulfur"
     },
     {
-    	"tag": "sulfurpotassiummod:dusts/potassium_item"
+    	"tag": "sulfurpotassiummod:dusts/potassium"
     }
   ],
   "result": {

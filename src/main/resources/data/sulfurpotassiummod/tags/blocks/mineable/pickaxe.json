@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "sulfurpotassiummod:sulfur_ore",
+	"sulfurpotassiummod:sulfur_nether_ore",
+	"sulfurpotassiummod:sulfur_block",
+	"sulfurpotassiummod:potassium_ore",
+	"sulfurpotassiummod:potassium_block"
+  ]
+}

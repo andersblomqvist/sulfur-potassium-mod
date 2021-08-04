@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "sulfurpotassiummod:item/potassium_item"
+        "layer0": "sulfurpotassiummod:item/potassium"
     }
 }
