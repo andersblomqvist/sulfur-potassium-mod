@@ -29,7 +29,7 @@ public class ModBlocks {
 	private static ArrayList<Block> blockList = new ArrayList<Block>();
 	
 	public static final Block 
-		SULFUR_ORE = registerBlock("sulfur_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F), UniformIntProvider.create(2, 4))),
+		SULFUR_ORE = registerBlock("sulfur_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 4))),
 		SULFUR_NETHER_ORE = registerBlock("sulfur_nether_ore", new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 5))),
 		SULFUR_BLOCK = registerBlock("sulfur_block", new Block(FabricBlockSettings.of(Material.METAL, MapColor.GOLD).breakByTool(FabricToolTags.PICKAXES, 2).strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL))),
 		POTASSIUM_ORE = registerBlock("potassium_ore", new OreBlock(FabricBlockSettings.of(Material.STONE).breakByTool(FabricToolTags.PICKAXES, 2).strength(3.0F, 3.0F))),
