@@ -25,8 +25,8 @@ public class ConfigValues {
 		CONFIG_SPEC.put("potassium_upper_max_height", 384);
 		CONFIG_SPEC.put("potassium_upper_count", 20);
 		
-		CONFIG_SPEC.put("sulfur_vein_size", 10);
-		CONFIG_SPEC.put("sulfur_max_height", 0);
+		CONFIG_SPEC.put("sulfur_vein_size", 9);
+		CONFIG_SPEC.put("sulfur_max_height", 5);
 		CONFIG_SPEC.put("sulfur_count", 8);
 		
 		CONFIG_SPEC.put("nether_sulfur_vein_size", 15);

@@ -17,15 +17,16 @@ public class ModItems {
 
 	public static Item
 		POTASSIUM,
+		RAW_POTASSIUM,
 		SULFUR;
 	
 	public static void registerItems() {
 		registerItem("potassium", POTASSIUM = new BoneMealItem(new Item.Settings().group(ItemGroup.MATERIALS)));
+		registerItem("raw_potassium", RAW_POTASSIUM = new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
 		registerItem("sulfur", SULFUR = new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
 	}
 	
 	public static void registerItem(String name, Item item) {
 		Registry.register(Registry.ITEM, new Identifier(SulfurPotassiumMod.MOD_ID, name), item);
 	}
-
 }

@@ -8,7 +8,7 @@ import com.branders.sulfurpotassiummod.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 /**
- * 	Sulfur Potassium Mod for Fabric 1.18
+ * 	Sulfur Potassium Mod for Fabric 1.18.2
  * 
  * 	@author Anders <Branders> Blomqvist
  */

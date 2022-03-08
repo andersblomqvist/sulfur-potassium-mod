@@ -1,6 +1,7 @@
 {
 	"item.sulfurpotassiummod.sulfur": "Sulfur",
 	"item.sulfurpotassiummod.potassium": "Potassium",
+	"item.sulfurpotassiummod.raw_potassium": "Raw Potassium",
 
 	"block.sulfurpotassiummod.sulfur_ore": "Sulfur Ore",
 	"block.sulfurpotassiummod.sulfur_block": "Sulfur Block",
