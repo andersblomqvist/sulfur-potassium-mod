@@ -1,67 +1,56 @@
 package com.branders.sulfurpotassiummod.registry;
 
-import java.util.ArrayList;
-
 import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
-import com.branders.sulfurpotassiummod.blocks.DropExpOre;
+import com.branders.sulfurpotassiummod.blocks.PotassiumBlock;
+import com.branders.sulfurpotassiummod.blocks.PotassiumOre;
+import com.branders.sulfurpotassiummod.blocks.SulfurBlock;
+import com.branders.sulfurpotassiummod.blocks.SulfurNetherOre;
+import com.branders.sulfurpotassiummod.blocks.SulfurOre;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.OreBlock;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 /**
- * 	List of all blocks in mod.	
+ * 	Handle the registration of the Blocks and Block Items.	
  * 
  * 	@author Anders <Branders> Blomqvist
  */
 public class ModBlocks {
 	
-	private static ArrayList<Block> blockList = new ArrayList<Block>();
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
+			ForgeRegistries.BLOCKS,
+			SulfurPotassiumMod.MOD_ID);
 	
-	public static Block 
-		SULFUR_ORE_BLOCK,
-		SULFUR_NETHER_ORE_BLOCK,
-		SULFUR_BLOCK,
-		POTASSIUM_ORE_BLOCK,
-		POTASSIUM_BLOCK;
+	public static final DeferredRegister<Item> BLOCK_ITEMS  = DeferredRegister.create(
+			ForgeRegistries.ITEMS,
+			SulfurPotassiumMod.MOD_ID);
 	
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		registerBlock(event, "potassium_ore_block", POTASSIUM_ORE_BLOCK = new Block(Block.Properties.from(Blocks.IRON_ORE)));
-		registerBlock(event, "potassium_block", POTASSIUM_BLOCK = new Block(Block.Properties.from(Blocks.IRON_BLOCK)));
-		registerBlock(event, "sulfur_ore_block", SULFUR_ORE_BLOCK = new DropExpOre(Block.Properties.from(Blocks.IRON_ORE)));
-		registerBlock(event, "sulfur_nether_ore_block", SULFUR_ORE_BLOCK = new DropExpOre(Block.Properties.from(Blocks.NETHER_QUARTZ_ORE)));
-		registerBlock(event, "sulfur_block", SULFUR_BLOCK = new Block(Block.Properties.from(Blocks.IRON_BLOCK)));
-	}
+	private static final Item.Properties BASE_ITEM_PROPERTIES = new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS);
 	
-	public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
-		for(Block block : blockList)
-			event.getRegistry().register(new BlockItem(block, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(block.getRegistryName()));
-	}
+	public static final RegistryObject<Block> POTASSIUM_ORE = BLOCKS.register("potassium_ore", PotassiumOre::new);
+    public static final RegistryObject<Item> POTASSIUM_ORE_ITEM = BLOCK_ITEMS.register("potassium_ore", () -> new BlockItem(POTASSIUM_ORE.get(), BASE_ITEM_PROPERTIES));
 	
-	private static void registerBlock(RegistryEvent.Register<Block> event, String name, Block block) {
-		block.setRegistryName(SulfurPotassiumMod.MODID, name);
-		event.getRegistry().register(block);
-		blockList.add(block);
-	}
-	
-	/**
-	 * 	Searches for the block and returns its default blockstate.
-	 * 
-	 * 	Returns null if block not found.
-	 * 
-	 * 	@param name Block registry name
-	 * 	@return BlockState
-	 */
-	public static BlockState getBlockState(String name) {
-		for(Block block : blockList) {
-			if(block.getRegistryName().toString().contains(name)) {
-				return block.getDefaultState();
-			}
-		}
-		return null;
+    public static final RegistryObject<Block> POTASSIUM_BLOCK = BLOCKS.register("potassium_block", PotassiumBlock::new);
+    public static final RegistryObject<Item> POTASSIUM_BLOCK_ITEM = BLOCK_ITEMS.register("potassium_block", () -> new BlockItem(POTASSIUM_BLOCK.get(), BASE_ITEM_PROPERTIES));
+    
+    public static final RegistryObject<OreBlock> SULFUR_ORE = BLOCKS.register("sulfur_ore", SulfurOre::new);
+    public static final RegistryObject<Item> SULFUR_ORE_ITEM = BLOCK_ITEMS.register("sulfur_ore", () -> new BlockItem(SULFUR_ORE.get(), BASE_ITEM_PROPERTIES));
+    
+    public static final RegistryObject<OreBlock> SULFUR_NETHER_ORE = BLOCKS.register("sulfur_nether_ore", SulfurNetherOre::new);
+    public static final RegistryObject<Item> SULFUR_NETHER_ORE_ITEM = BLOCK_ITEMS.register("sulfur_nether_ore", () -> new BlockItem(SULFUR_NETHER_ORE.get(), BASE_ITEM_PROPERTIES));
+    
+    public static final RegistryObject<Block> SULFUR_BLOCK = BLOCKS.register("sulfur_block", SulfurBlock::new);
+    public static final RegistryObject<Item> SULFUR_BLOCK_ITEM = BLOCK_ITEMS.register("sulfur_block", () -> new BlockItem(SULFUR_BLOCK.get(), BASE_ITEM_PROPERTIES));
+    
+	public static void register(IEventBus modEventBus) {
+		BLOCKS.register(modEventBus);
+		BLOCK_ITEMS.register(modEventBus);
 	}
 }

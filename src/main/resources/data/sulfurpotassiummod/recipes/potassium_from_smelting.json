@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "sulfurpotassiummod:raw_potassium"
+  },
+  "result": "sulfurpotassiummod:potassium",
+  "experience": 0.7,
+  "cookingtime": 200
+}

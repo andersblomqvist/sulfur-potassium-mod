@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "tag": "sulfurpotassiummod:ores/potassium_ore_block"
-  },
-  "result": "sulfurpotassiummod:potassium_item",
-  "experience": 0.7,
-  "cookingtime": 100
-}

@@ -1,11 +1,12 @@
 
 {
-	"item.sulfurpotassiummod.sulfur_item": "Enxofre",
-	"item.sulfurpotassiummod.potassium_item": "Potássio",
+	"item.sulfurpotassiummod.sulfur": "Enxofre",
+	"item.sulfurpotassiummod.potassium": "Potássio",
+	"item.sulfurpotassiummod.raw_potassium": "Raw Potássio",
 
-	"block.sulfurpotassiummod.sulfur_ore_block": "Minério de Enxofre",
+	"block.sulfurpotassiummod.sulfur_ore": "Minério de Enxofre",
 	"block.sulfurpotassiummod.sulfur_block": "Bloco de Enxofre",
-	"block.sulfurpotassiummod.sulfur_nether_ore_block": "Minério de Enxofre do Nether",
-	"block.sulfurpotassiummod.potassium_ore_block": "Minério de Potássio",
+	"block.sulfurpotassiummod.sulfur_nether_ore": "Minério de Enxofre do Nether",
+	"block.sulfurpotassiummod.potassium_ore": "Minério de Potássio",
 	"block.sulfurpotassiummod.potassium_block": "Bloco de Potássio"
 }
