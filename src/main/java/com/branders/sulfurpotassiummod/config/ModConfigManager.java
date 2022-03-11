@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Arrays;
 
 import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
@@ -31,23 +32,26 @@ public class ModConfigManager {
 	/**
 	 * 	Initialize the mod config. Try find an existing config file. If it exists we set values from
 	 * 	file. Otherwise we create a new config file with default values.
+	 * 
+	 * 	@param modid Config filename
+	 * 	@param configPath path to config directory
 	 */
-	public static void initConfig(String modid, File absoluteFile) {
+	public static void initConfig(String modid, Path configPath) {
 		
-		// Config values will be overwritten if a config file exists.
+		// Init config hash map. Values will be overwritten if config file exist
 		ConfigValues.setDefaultConfigValues();
 		
-		file = new File(absoluteFile, "/config/" + modid + ".json");
+		SulfurPotassiumMod.LOGGER.info("Config Path: [" + configPath.toFile() + "]");
+		
+		file = new File(configPath.toFile(), modid + ".json");
 		
 		if(!file.exists()) {
 			// No config file found. Create a new default config
-			System.out.println("Could not find config, generating new default config.");
+			SulfurPotassiumMod.LOGGER.info("Could not find config, generating new default config.");
 			saveConfig();
 		}
-		else {
-			System.out.println("Reading config values from file.");
+		else
 			readConfig();
-		}
 		
 		SulfurPotassiumMod.LOGGER.info("Config initialized");
 	}
@@ -59,13 +63,14 @@ public class ModConfigManager {
 	private static void readConfig() {
 		try {
 			BufferedReader reader =  new BufferedReader(new FileReader(file));
+			@SuppressWarnings("deprecation")
 			JsonObject json = new JsonParser().parse(reader).getAsJsonObject();
 			
 			for(String key : ConfigValues.CONFIG_SPEC.keySet()) {
 				if(json.get(key) != null)
 					ConfigValues.setConfigValue(key, json.get(key).getAsInt());
 				else 
-					System.err.println("Key Error: Could not find key: " + key);
+					SulfurPotassiumMod.LOGGER.info("Key Error: Could not find key: " + key);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -84,7 +89,7 @@ public class ModConfigManager {
 		
 		for(Object key : keys) {
 			config.addProperty((String) key, ConfigValues.CONFIG_SPEC.get(key));
-			System.out.println("Adding key=" + key + ", value=" + ConfigValues.CONFIG_SPEC.get(key));
+			SulfurPotassiumMod.LOGGER.info("Adding key=" + key + ", value=" + ConfigValues.CONFIG_SPEC.get(key));
 		}
 		
 		String jsonConfig = GSON.toJson(config);
@@ -94,7 +99,7 @@ public class ModConfigManager {
 			writer.write(jsonConfig);
 			writer.close();
 		} catch (IOException e) {
-			System.err.println("Could not save config file.");
+			SulfurPotassiumMod.LOGGER.error("Could not save config file.");
 			e.printStackTrace();
 		}
 	}

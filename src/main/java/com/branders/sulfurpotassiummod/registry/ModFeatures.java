@@ -2,7 +2,6 @@ package com.branders.sulfurpotassiummod.registry;
 
 import java.util.List;
 
-import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
 import com.branders.sulfurpotassiummod.config.ConfigValues;
 
 import net.minecraft.core.Holder;
