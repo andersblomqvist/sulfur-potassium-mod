@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
 import com.branders.sulfurpotassiummod.config.ConfigValues;
-import com.branders.sulfurpotassiummod.gen.OreFeatures;
+import com.branders.sulfurpotassiummod.gen.ModOreFeatures;
 
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
@@ -51,14 +51,14 @@ public class ModFeatures {
 	 */
 	public static void registerOreFeatures() {
 		if(disable_gen_potassium == 0) {
-			register("potassium_ores_middle", OreFeatures.POTASSIUM_MIDDLE_CONFIGURED_FEATURE, OreFeatures.POTASSIUM_MIDDLE_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
-			register("potassium_ores_upper", OreFeatures.POTASSIUM_UPPER_CONFIGURED_FEATURE, OreFeatures.POTASSIUM_UPPER_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
+			register("potassium_ores_middle", ModOreFeatures.POTASSIUM_MIDDLE_CONFIGURED_FEATURE, ModOreFeatures.POTASSIUM_MIDDLE_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
+			register("potassium_ores_upper", ModOreFeatures.POTASSIUM_UPPER_CONFIGURED_FEATURE, ModOreFeatures.POTASSIUM_UPPER_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
 		}
 		
 		if(disable_gen_sulfur == 0)
-			register("sulfur_ores", OreFeatures.SULFUR_CONFIGURED_FEATURE, OreFeatures.SULFUR_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
+			register("sulfur_ores", ModOreFeatures.SULFUR_CONFIGURED_FEATURE, ModOreFeatures.SULFUR_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
 		
 		if(disable_gen_nether_sulfur == 0)
-			register("sulfur_nether_ores", OreFeatures.SULFUR_NETHER_CONFIGURED_FEATURE, OreFeatures.SULFUR_NETHER_PLACED_FEATURE, BiomeSelectors.foundInTheNether());
+			register("sulfur_nether_ores", ModOreFeatures.SULFUR_NETHER_CONFIGURED_FEATURE, ModOreFeatures.SULFUR_NETHER_PLACED_FEATURE, BiomeSelectors.foundInTheNether());
 	}
 }

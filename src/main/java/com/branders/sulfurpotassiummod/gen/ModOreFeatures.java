@@ -22,7 +22,7 @@ import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
  * 
  * 	@author Anders <Branders> Blomqvist
  */
-public class OreFeatures {
+public class ModOreFeatures {
 
 	private static int potassium_middle_vein_size = ConfigValues.CONFIG_SPEC.get("potassium_middle_vein_size");
 	private static int potassium_middle_max_height = ConfigValues.CONFIG_SPEC.get("potassium_middle_max_height");
