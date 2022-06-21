@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": ["nether_wastes", "warped_forest", "crimson_forest", "soul_sand_valley", "basalt_deltas"],
+  "features": "sulfurpotassiummod:sulfur_nether_ores",
+  "step": "underground_ores"
+}

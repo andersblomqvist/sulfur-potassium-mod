@@ -11,7 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -40,10 +40,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> POTASSIUM_BLOCK = BLOCKS.register("potassium_block", PotassiumBlock::new);
     public static final RegistryObject<Item> POTASSIUM_BLOCK_ITEM = BLOCK_ITEMS.register("potassium_block", () -> new BlockItem(POTASSIUM_BLOCK.get(), BASE_ITEM_PROPERTIES));
     
-    public static final RegistryObject<OreBlock> SULFUR_ORE = BLOCKS.register("sulfur_ore", SulfurOre::new);
+    public static final RegistryObject<DropExperienceBlock> SULFUR_ORE = BLOCKS.register("sulfur_ore", SulfurOre::new);
     public static final RegistryObject<Item> SULFUR_ORE_ITEM = BLOCK_ITEMS.register("sulfur_ore", () -> new BlockItem(SULFUR_ORE.get(), BASE_ITEM_PROPERTIES));
     
-    public static final RegistryObject<OreBlock> SULFUR_NETHER_ORE = BLOCKS.register("sulfur_nether_ore", SulfurNetherOre::new);
+    public static final RegistryObject<DropExperienceBlock> SULFUR_NETHER_ORE = BLOCKS.register("sulfur_nether_ore", SulfurNetherOre::new);
     public static final RegistryObject<Item> SULFUR_NETHER_ORE_ITEM = BLOCK_ITEMS.register("sulfur_nether_ore", () -> new BlockItem(SULFUR_NETHER_ORE.get(), BASE_ITEM_PROPERTIES));
     
     public static final RegistryObject<Block> SULFUR_BLOCK = BLOCKS.register("sulfur_block", SulfurBlock::new);

@@ -2,7 +2,7 @@ package com.branders.sulfurpotassiummod.blocks;
 
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 /**
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
  * 
  * 	@author Anders <Branders> Blomqvist
  */
-public class SulfurNetherOre extends OreBlock {
+public class SulfurNetherOre extends DropExperienceBlock {
 	
 	public SulfurNetherOre() {
 		super(BlockBehaviour.Properties.copy(Blocks.NETHER_QUARTZ_ORE), UniformInt.of(2, 5));

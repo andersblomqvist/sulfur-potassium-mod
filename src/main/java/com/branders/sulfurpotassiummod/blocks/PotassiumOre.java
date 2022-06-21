@@ -1,7 +1,7 @@
 package com.branders.sulfurpotassiummod.blocks;
 
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.OreBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 /**
@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
  * 
  * 	@author Anders <Branders> Blomqvist
  */
-public class PotassiumOre extends OreBlock {
+public class PotassiumOre extends DropExperienceBlock {
 	
 	public PotassiumOre() {
 		super(BlockBehaviour.Properties.copy(Blocks.IRON_ORE));

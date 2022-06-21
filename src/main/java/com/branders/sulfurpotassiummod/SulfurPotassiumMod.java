@@ -14,7 +14,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 
 /**
  * 	This mods adds two new blocks into Minecraft - sulfur and potassium.
- * 	Their raw materials can then make gunpowder. (Minecraft Forge 1.18.2)
+ * 	Their raw materials can then make gunpowder. (Minecraft Forge 1.19)
  * 
  *	@author Anders <Branders> Blomqvist
  */
