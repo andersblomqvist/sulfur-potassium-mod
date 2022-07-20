@@ -1,0 +1,11 @@
+{
+	"item.sulfurpotassiummod.sulfur": "Сера",
+	"item.sulfurpotassiummod.potassium": "Калий",
+	"item.sulfurpotassiummod.raw_potassium": "Рудный калий",
+
+	"block.sulfurpotassiummod.sulfur_ore": "Серная руда",
+	"block.sulfurpotassiummod.sulfur_block": "Серный блок",
+	"block.sulfurpotassiummod.sulfur_nether_ore": "Незерская серная руда",
+	"block.sulfurpotassiummod.potassium_ore": "Калиевая руда",
+	"block.sulfurpotassiummod.potassium_block": "Калиевый блок"
+}
