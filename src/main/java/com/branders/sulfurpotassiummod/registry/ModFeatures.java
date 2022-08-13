@@ -94,7 +94,7 @@ public class ModFeatures {
 						ModBlocks.SULFUR_ORE.get().defaultBlockState())),
 						sulfur_vein_size));
 		SULFUR_ORES_PLACED = PlacementUtils.register("sulfurpotassiummod:sulfur_ores", SULFUR_ORES, commonOrePlacement(sulfur_count,
-						HeightRangePlacement.uniform(VerticalAnchor.BOTTOM, VerticalAnchor.absolute(sulfur_max_height))));
+						HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(sulfur_max_height))));
 		
 		// Sulfur Nether
 		SULFUR_NETHER_ORES = FeatureUtils.register("sulfurpotassiummod:sulfur_nether_ores", 
