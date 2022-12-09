@@ -1,0 +1,11 @@
+{
+	"item.sulfurpotassiummod.sulfur": "Azufre", 
+	"item.sulfurpotassiummod.potassium": "Potasio", 
+	"item.sulfurpotassiummod.raw_potassium": "Potasio crudo",
+
+	"block.sulfurpotassiummod.sulfur_ore": "Mina de Azufre", 
+	"block.sulfurpotassiummod.sulfur_block": "Bloque de Azufre", 
+	"block.sulfurpotassiummod.sulfur_nether_ore": "Mina de Azufre del Nether", 
+	"block.sulfurpotassiummod.potassium_ore": "Mina de Potasio", 
+	"block.sulfurpotassiummod.potassium_block": "Bloque de Potasio"
+}
