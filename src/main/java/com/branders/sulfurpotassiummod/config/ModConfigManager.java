@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,11 +43,11 @@ public class ModConfigManager {
 		
 		if(!file.exists()) {
 			// No config file found. Create a new default config
-			System.out.println("Could not find config, generating new default config.");
+			SulfurPotassiumMod.LOGGER.info("Could not find config, generating new default config.");
 			saveConfig();
 		}
 		else {
-			System.out.println("Reading config values from file.");
+			SulfurPotassiumMod.LOGGER.info("Reading config values from file.");
 			readConfig();
 		}
 	}
@@ -84,7 +85,7 @@ public class ModConfigManager {
 		
 		for(Object key : keys) {
 			config.addProperty((String) key, ConfigValues.CONFIG_SPEC.get(key));
-			System.out.println("Adding key=" + key + ", value=" + ConfigValues.CONFIG_SPEC.get(key));
+			SulfurPotassiumMod.LOGGER.info("Adding key=" + key + ", value=" + ConfigValues.CONFIG_SPEC.get(key));
 		}
 		
 		String jsonConfig = GSON.toJson(config);
@@ -94,7 +95,7 @@ public class ModConfigManager {
 			writer.write(jsonConfig);
 			writer.close();
 		} catch (IOException e) {
-			System.err.println("Could not save config file.");
+		    SulfurPotassiumMod.LOGGER.error("Could not save config file.");
 			e.printStackTrace();
 		}
 	}

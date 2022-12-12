@@ -1,0 +1,24 @@
+{
+  "feature": "sulfurpotassiummod:potassium_ores_upper",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": 20
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 384
+        },
+        "min_inclusive": {
+          "absolute": 70
+        }
+      }
+    }
+  ]
+}

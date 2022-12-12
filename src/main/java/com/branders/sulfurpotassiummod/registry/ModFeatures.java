@@ -1,24 +1,24 @@
 package com.branders.sulfurpotassiummod.registry;
 
-import java.util.function.Predicate;
+import java.util.function.BiConsumer;
 
 import com.branders.sulfurpotassiummod.SulfurPotassiumMod;
 import com.branders.sulfurpotassiummod.config.ConfigValues;
-import com.branders.sulfurpotassiummod.gen.ModOreFeatures;
 
+import net.fabricmc.fabric.api.biome.v1.BiomeModificationContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 /**
- * 	Handles the registration of the ore generation features
+ * 	Handles the registration of the ore generation features from data generation.
  * 
  * 	@author Anders <Branders> Blomqvist
  */
@@ -27,38 +27,42 @@ public class ModFeatures {
 	private static int disable_gen_potassium = ConfigValues.CONFIG_SPEC.get("disable_gen_potassium");
 	private static int disable_gen_sulfur = ConfigValues.CONFIG_SPEC.get("disable_gen_sulfur");
 	private static int disable_gen_nether_sulfur = ConfigValues.CONFIG_SPEC.get("disable_gen_nether_sulfur");
-	
-	/**
-	 * 	Register new ore generation feature.
-	 * 
-	 * 	@param name Identifier name
-	 * 	@param config ConfiguredFeature object
-	 * 	@param placed PlacedFeature object
-	 * 	@param biome BiomeSelector.foundIn ... 
-	 */
-	private static void register(String name, ConfiguredFeature<?, ?> config, PlacedFeature placed, Predicate<BiomeSelectionContext> biome) {
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, name), config);
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, name), placed);
-		
-		if(biome.equals(BiomeSelectors.foundInOverworld()))
-			BiomeModifications.addFeature(biome, GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(SulfurPotassiumMod.MOD_ID, name)));
-		else if(biome.equals(BiomeSelectors.foundInTheNether()))
-			BiomeModifications.addFeature(biome, GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(SulfurPotassiumMod.MOD_ID, name)));
-	}
-	
-	/**
-	 * 	Init the mod features
-	 */
-	public static void registerOreFeatures() {
-		if(disable_gen_potassium == 0) {
-			register("potassium_ores_middle", ModOreFeatures.POTASSIUM_MIDDLE_CONFIGURED_FEATURE, ModOreFeatures.POTASSIUM_MIDDLE_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
-			register("potassium_ores_upper", ModOreFeatures.POTASSIUM_UPPER_CONFIGURED_FEATURE, ModOreFeatures.POTASSIUM_UPPER_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
-		}
-		
-		if(disable_gen_sulfur == 0)
-			register("sulfur_ores", ModOreFeatures.SULFUR_CONFIGURED_FEATURE, ModOreFeatures.SULFUR_PLACED_FEATURE, BiomeSelectors.foundInOverworld());
-		
-		if(disable_gen_nether_sulfur == 0)
-			register("sulfur_nether_ores", ModOreFeatures.SULFUR_NETHER_CONFIGURED_FEATURE, ModOreFeatures.SULFUR_NETHER_PLACED_FEATURE, BiomeSelectors.foundInTheNether());
-	}
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CF_POTASSIUM_MIDDLE = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "potassium_ores_middle"));
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CF_POTASSIUM_UPPER = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "potassium_ores_upper"));
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CF_SULFUR = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "sulfur_ores"));
+    public static final RegistryKey<ConfiguredFeature<?, ?>> CF_SULFUR_NETHER = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "sulfur_nether_ores"));
+    
+    public static final RegistryKey<PlacedFeature> PF_POTASSIUM_MIDDLE = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "potassium_ores_middle"));
+    public static final RegistryKey<PlacedFeature> PF_POTASSIUM_UPPER  = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "potassium_ores_upper"));
+    public static final RegistryKey<PlacedFeature> PF_SULFUR  = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "sulfur_ores"));
+    public static final RegistryKey<PlacedFeature> PF_SULFUR_NETHER  = RegistryKey.of(RegistryKeys.PLACED_FEATURE, new Identifier(SulfurPotassiumMod.MOD_ID, "sulfur_nether_ores"));
+    
+    public static void register() {
+        // Overworld features
+        BiomeModifications.create(new Identifier(SulfurPotassiumMod.MOD_ID, "features"))
+            .add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInOverworld(), overworldOres());
+        
+        // Nether features
+        BiomeModifications.create(new Identifier(SulfurPotassiumMod.MOD_ID, "nether_features"))
+            .add(ModificationPhase.ADDITIONS, BiomeSelectors.foundInTheNether(), netherOres());
+    }
+    
+    private static BiConsumer<BiomeSelectionContext, BiomeModificationContext> overworldOres() {
+        return (biomeSelectionContext, biomeModificationContext) -> {
+            if(disable_gen_potassium == 0) {
+                biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, PF_POTASSIUM_MIDDLE);
+                biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, PF_POTASSIUM_UPPER);
+            }
+            if(disable_gen_sulfur == 0)
+                biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, PF_SULFUR);
+        };
+    }
+    
+    private static BiConsumer<BiomeSelectionContext, BiomeModificationContext> netherOres() {
+        return (biomeSelectionContext, biomeModificationContext) -> {
+            if(disable_gen_nether_sulfur == 0)
+                biomeModificationContext.getGenerationSettings().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, PF_SULFUR_NETHER);
+        };
+    }
 }

@@ -1,5 +1,8 @@
 package com.branders.sulfurpotassiummod;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.branders.sulfurpotassiummod.config.ModConfigManager;
 import com.branders.sulfurpotassiummod.registry.ModBlocks;
 import com.branders.sulfurpotassiummod.registry.ModFeatures;
@@ -16,11 +19,13 @@ public class SulfurPotassiumMod implements ModInitializer {
 	
 	public static final String MOD_ID = "sulfurpotassiummod";
 	
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+	
 	@Override
 	public void onInitialize() {
 		ModConfigManager.initConfig(MOD_ID);
 		ModBlocks.register();
-		ModItems.registerItems();
-		ModFeatures.registerOreFeatures();
+		ModItems.register();
+		ModFeatures.register();
 	}
 }
