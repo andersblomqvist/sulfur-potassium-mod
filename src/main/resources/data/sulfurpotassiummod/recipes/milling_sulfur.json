@@ -1,0 +1,15 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "sulfurpotassiummod:sulfur_ore"
+    }
+  ], 
+"results": [
+  {
+    "item": "sulfurpotassiummod:sulfur",
+    "count": 1,
+    "chance": 1
+  }
+]
+}
