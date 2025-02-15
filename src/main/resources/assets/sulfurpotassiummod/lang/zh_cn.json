@@ -1,0 +1,11 @@
+{
+	"item.sulfurpotassiummod.sulfur": "硫",
+	"item.sulfurpotassiummod.potassium": "钾",
+	"item.sulfurpotassiummod.raw_potassium": "粗钾",
+
+	"block.sulfurpotassiummod.sulfur_ore": "硫矿石",
+	"block.sulfurpotassiummod.sulfur_block": "硫块",
+	"block.sulfurpotassiummod.sulfur_nether_ore": "下界硫矿石",
+	"block.sulfurpotassiummod.potassium_ore": "钾矿石",
+	"block.sulfurpotassiummod.potassium_block": "钾块"
+}
